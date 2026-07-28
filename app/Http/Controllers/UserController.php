@@ -26,6 +26,7 @@ class UserController extends Controller
             'date_of_birth' => ['sometimes', 'nullable', 'string'],
             'gender' => ['sometimes', 'nullable', 'string'],
             'nationality' => ['sometimes', 'nullable', 'string'],
+            'avatar_url' => ['sometimes', 'nullable', 'string'],
             'phone' => ['sometimes', 'nullable', 'string'],
         ]);
 

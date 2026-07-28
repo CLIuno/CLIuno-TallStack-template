@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'date_of_birth',
         'gender',
         'nationality',
+        'avatar_url',
         'phone',
         'is_online',
         'role_id',

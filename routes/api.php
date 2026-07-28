@@ -6,6 +6,7 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -78,6 +79,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/follows/{userId}/followers', [FollowController::class, 'getFollowers']);
     Route::get('/follows/{userId}/following', [FollowController::class, 'getFollowing']);
     Route::get('/follows/{userId}/is-following', [FollowController::class, 'isFollowing']);
+
+    // Uploads
+    Route::post('/uploads/image', [UploadController::class, 'image']);
 
     // Roles (admin only)
     Route::middleware('admin')->group(function () {

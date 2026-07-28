@@ -24,6 +24,11 @@ class PostController extends Controller
 
     public function store(Request $request): JsonResponse
     {
+        // frontends may send either casing; image_url is what goes back out
+        if ($request->has('imageUrl') && ! $request->has('image_url')) {
+            $request->merge(['image_url' => $request->input('imageUrl')]);
+        }
+
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
@@ -41,6 +46,11 @@ class PostController extends Controller
 
         if ($post->user_id !== $request->user()->id) {
             return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
+        // frontends may send either casing; image_url is what goes back out
+        if ($request->has('imageUrl') && ! $request->has('image_url')) {
+            $request->merge(['image_url' => $request->input('imageUrl')]);
         }
 
         $validated = $request->validate([
