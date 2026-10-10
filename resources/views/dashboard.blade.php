@@ -16,14 +16,14 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-xs sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __('Welcome back, :name!', ['name' => $user->first_name ?: $user->username]) }}
                 </div>
             </div>
 
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
-                <a href="{{ route('todos') }}" wire:navigate class="bg-white overflow-hidden shadow-sm sm:rounded-lg hover:shadow-md transition">
+                <a href="{{ route('todos') }}" wire:navigate class="bg-white overflow-hidden shadow-xs sm:rounded-lg hover:shadow-md transition">
                     <div class="p-6">
                         <p class="text-sm font-medium text-gray-500">{{ __('Todos') }}</p>
                         <p class="mt-2 text-3xl font-semibold text-gray-900">{{ $todoCount }}</p>
@@ -31,7 +31,7 @@
                     </div>
                 </a>
 
-                <a href="{{ route('posts.index') }}" wire:navigate class="bg-white overflow-hidden shadow-sm sm:rounded-lg hover:shadow-md transition">
+                <a href="{{ route('posts.index') }}" wire:navigate class="bg-white overflow-hidden shadow-xs sm:rounded-lg hover:shadow-md transition">
                     <div class="p-6">
                         <p class="text-sm font-medium text-gray-500">{{ __('Posts') }}</p>
                         <p class="mt-2 text-3xl font-semibold text-gray-900">{{ $postCount }}</p>
@@ -39,7 +39,7 @@
                     </div>
                 </a>
 
-                <a href="{{ route('users.index') }}" wire:navigate class="bg-white overflow-hidden shadow-sm sm:rounded-lg hover:shadow-md transition">
+                <a href="{{ route('users.index') }}" wire:navigate class="bg-white overflow-hidden shadow-xs sm:rounded-lg hover:shadow-md transition">
                     <div class="p-6">
                         <p class="text-sm font-medium text-gray-500">{{ __('Followers') }}</p>
                         <p class="mt-2 text-3xl font-semibold text-gray-900">{{ $followerCount }}</p>

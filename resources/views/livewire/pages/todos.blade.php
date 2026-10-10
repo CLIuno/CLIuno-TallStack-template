@@ -99,7 +99,7 @@ new #[Layout('layouts.app')] class extends Component
 }; ?>
 
 <div>
-    <header class="bg-white shadow">
+    <header class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Todos') }}
@@ -110,7 +110,7 @@ new #[Layout('layouts.app')] class extends Component
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <!-- Create Todo -->
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-xs sm:rounded-lg">
                 <form wire:submit="create" class="p-6 space-y-4">
                     <div>
                         <x-input-label for="title" :value="__('Title')" />
@@ -120,7 +120,7 @@ new #[Layout('layouts.app')] class extends Component
 
                     <div>
                         <x-input-label for="description" :value="__('Description (optional)')" />
-                        <textarea wire:model="description" id="description" name="description" rows="2" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"></textarea>
+                        <textarea wire:model="description" id="description" name="description" rows="2" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-xs"></textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
 
@@ -131,7 +131,7 @@ new #[Layout('layouts.app')] class extends Component
             </div>
 
             <!-- Todo List -->
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-xs sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @forelse ($todos as $todo)
                         <div class="flex items-start gap-4 py-4 {{ $loop->last ? '' : 'border-b border-gray-100' }}" wire:key="todo-{{ $todo->id }}">
@@ -139,7 +139,7 @@ new #[Layout('layouts.app')] class extends Component
                                 type="checkbox"
                                 wire:click="toggle({{ $todo->id }})"
                                 @checked($todo->is_completed)
-                                class="mt-1 rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                                class="mt-1 rounded-sm border-gray-300 text-indigo-600 shadow-xs focus:ring-indigo-500"
                             />
 
                             <div class="flex-1 min-w-0">

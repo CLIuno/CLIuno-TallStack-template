@@ -45,7 +45,7 @@ new #[Layout('layouts.app')] class extends Component
 }; ?>
 
 <div>
-    <header class="bg-white shadow">
+    <header class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Users') }}
@@ -55,7 +55,7 @@ new #[Layout('layouts.app')] class extends Component
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-xs sm:rounded-lg">
                 <div class="p-6">
                     @forelse ($users as $user)
                         <div class="flex items-center justify-between gap-4 py-4 {{ $loop->last ? '' : 'border-b border-gray-100' }}" wire:key="user-{{ $user->id }}">
