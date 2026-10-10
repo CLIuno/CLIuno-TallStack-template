@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Livewire\Volt\Volt;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -19,9 +19,9 @@ class ProfileTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSeeVolt('profile.update-profile-information-form')
-            ->assertSeeVolt('profile.update-password-form')
-            ->assertSeeVolt('profile.delete-user-form');
+            ->assertSeeLivewire('profile.update-profile-information-form')
+            ->assertSeeLivewire('profile.update-password-form')
+            ->assertSeeLivewire('profile.delete-user-form');
     }
 
     public function test_profile_information_can_be_updated(): void
@@ -30,7 +30,7 @@ class ProfileTest extends TestCase
 
         $this->actingAs($user);
 
-        $component = Volt::test('profile.update-profile-information-form')
+        $component = Livewire::test('profile.update-profile-information-form')
             ->set('username', 'testuser')
             ->set('first_name', 'Test')
             ->set('last_name', 'User')
@@ -58,7 +58,7 @@ class ProfileTest extends TestCase
 
         $this->actingAs($user);
 
-        $component = Volt::test('profile.update-profile-information-form')
+        $component = Livewire::test('profile.update-profile-information-form')
             ->set('username', $user->username)
             ->set('first_name', 'Test')
             ->set('last_name', 'User')
@@ -78,7 +78,7 @@ class ProfileTest extends TestCase
 
         $this->actingAs($user);
 
-        $component = Volt::test('profile.delete-user-form')
+        $component = Livewire::test('profile.delete-user-form')
             ->set('password', 'password')
             ->call('deleteUser');
 
@@ -96,7 +96,7 @@ class ProfileTest extends TestCase
 
         $this->actingAs($user);
 
-        $component = Volt::test('profile.delete-user-form')
+        $component = Livewire::test('profile.delete-user-form')
             ->set('password', 'wrong-password')
             ->call('deleteUser');
 

@@ -22,7 +22,7 @@
                             <h1 class="text-2xl font-semibold text-black dark:text-white">CLIuno</h1>
                         </div>
                         @if (Route::has('login'))
-                            <livewire:welcome.navigation />
+                            <x-welcome.navigation />
                         @endif
                     </header>
 

@@ -4,7 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Livewire\Volt\Volt;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class PasswordConfirmationTest extends TestCase
@@ -18,7 +18,7 @@ class PasswordConfirmationTest extends TestCase
         $response = $this->actingAs($user)->get('/confirm-password');
 
         $response
-            ->assertSeeVolt('pages.auth.confirm-password')
+            ->assertSeeLivewire('pages.auth.confirm-password')
             ->assertStatus(200);
     }
 
@@ -28,7 +28,7 @@ class PasswordConfirmationTest extends TestCase
 
         $this->actingAs($user);
 
-        $component = Volt::test('pages.auth.confirm-password')
+        $component = Livewire::test('pages.auth.confirm-password')
             ->set('password', 'password');
 
         $component->call('confirmPassword');
@@ -44,7 +44,7 @@ class PasswordConfirmationTest extends TestCase
 
         $this->actingAs($user);
 
-        $component = Volt::test('pages.auth.confirm-password')
+        $component = Livewire::test('pages.auth.confirm-password')
             ->set('password', 'wrong-password');
 
         $component->call('confirmPassword');

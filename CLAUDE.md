@@ -1,7 +1,7 @@
 # CLIuno TallStack template
 
-TALL stack (Tailwind, Alpine, Laravel 13, Livewire/Volt) app that is **two things at
-once**: a server-rendered demo app (Breeze auth + Livewire pages) and a full CLIuno
+TALL stack (Tailwind v4, Alpine, Laravel 13, Livewire 4) app that is **two things at
+once**: a server-rendered demo app (Livewire 4 single-file pages) and a full CLIuno
 REST backend (Sanctum bearer tokens under `/api/v1`). The API surface is a port of
 CLIuno-Laravel-template — keep the two aligned when the contract changes.
 
@@ -9,7 +9,7 @@ CLIuno-Laravel-template — keep the two aligned when the contract changes.
 
 ```bash
 composer install && php artisan migrate   # sqlite database/database.sqlite
-npm install && npm run build              # vite assets (breeze/livewire UI)
+npm install && npm run build              # vite + @tailwindcss/vite assets for the UI
 php artisan serve                         # UI at /, API at /api/v1
 php artisan test                          # phpunit feature+unit — keep green
 ./vendor/bin/pint                         # formatting (--test to check)
@@ -22,12 +22,17 @@ php artisan test                          # phpunit feature+unit — keep green
   (login issues an `api` + a `refresh`-ability Sanctum token), resource controllers in
   `app/Http/Controllers/`, `admin` middleware gates `PATCH/DELETE /users/{id}` and roles,
   `app/Services/TotpService.php` (dependency-free RFC 6238).
-- **UI**: Breeze Livewire (Volt) — auth pages in `resources/views/livewire/pages/auth/`,
-  demo pages in `resources/views/livewire/pages/` (`todos`, `posts/index`, `posts/show`,
-  `users`), routed via `Volt::route` in `routes/web.php` inside the `auth` middleware
-  group. Blade components (`x-text-input` etc.) come from Breeze.
+- **UI**: Livewire 4 **single-file components** (`new class extends Livewire\Component`
+  + markup in one `.blade.php`; Volt is gone — Livewire 4 ships this natively). Auth pages
+  in `resources/views/livewire/pages/auth/`, demo pages in `resources/views/livewire/pages/`
+  (`todos`, `posts/index`, `posts/show`, `users`), routed with `Route::livewire()` in
+  `routes/web.php` inside the `auth` middleware group. New pages:
+  `php artisan make:livewire pages.<name>` (sfc by default). Tests use `Livewire::test()` /
+  `assertSeeLivewire()`. Plain Blade components (`x-text-input`, `x-welcome.navigation` …)
+  live in `resources/views/components/`. Tailwind v4 is configured in
+  `resources/css/app.css` (`@import 'tailwindcss'`, no `tailwind.config.js`).
 - **User model has NO `name` column** — it's `username` + `first_name`/`last_name`
-  (+ phone). Anything Breeze-flavored you add must use those fields; `UserFactory`
+  (+ phone). Any auth scaffolding you add must use those fields; `UserFactory`
   already does. Login accepts **username or email** (LoginForm checks for `@`).
 
 ## Contract rules this codebase follows
@@ -43,7 +48,7 @@ php artisan test                          # phpunit feature+unit — keep green
 
 ## Conventions
 
-Pint formatting; conventional commits; UI tests live in `tests/Feature` (Volt render +
+Pint formatting; conventional commits; UI tests live in `tests/Feature` (Livewire render +
 CRUD/follow interactions) — extend them when adding Livewire pages.
 
 ## AI agents (Claude Code and friends)

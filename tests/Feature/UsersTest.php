@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Livewire\Volt\Volt;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class UsersTest extends TestCase
@@ -27,7 +27,7 @@ class UsersTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSeeVolt('pages.users')
+            ->assertSeeLivewire('pages.users')
             ->assertSee($user->username)
             ->assertSee($other->username)
             ->assertSee($other->email);
@@ -40,7 +40,7 @@ class UsersTest extends TestCase
 
         $this->actingAs($user);
 
-        Volt::test('pages.users')
+        Livewire::test('pages.users')
             ->call('toggleFollow', $other->id)
             ->assertHasNoErrors();
 
@@ -49,7 +49,7 @@ class UsersTest extends TestCase
             'following_id' => $other->id,
         ]);
 
-        Volt::test('pages.users')
+        Livewire::test('pages.users')
             ->call('toggleFollow', $other->id)
             ->assertHasNoErrors();
 
