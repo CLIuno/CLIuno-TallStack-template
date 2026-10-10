@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Models\Todo;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Livewire\Volt\Volt;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class TodosTest extends TestCase
@@ -33,7 +33,7 @@ class TodosTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSeeVolt('pages.todos')
+            ->assertSeeLivewire('pages.todos')
             ->assertSee('Write feature tests')
             ->assertSee('Cover the todos page');
     }
@@ -44,7 +44,7 @@ class TodosTest extends TestCase
 
         $this->actingAs($user);
 
-        Volt::test('pages.todos')
+        Livewire::test('pages.todos')
             ->set('title', 'New todo')
             ->set('description', 'Some details')
             ->call('create')
@@ -66,7 +66,7 @@ class TodosTest extends TestCase
 
         $this->actingAs($user);
 
-        Volt::test('pages.todos')
+        Livewire::test('pages.todos')
             ->call('toggle', $todo->id)
             ->assertHasNoErrors();
 
@@ -81,7 +81,7 @@ class TodosTest extends TestCase
 
         $this->actingAs($user);
 
-        Volt::test('pages.todos')
+        Livewire::test('pages.todos')
             ->call('edit', $todo->id)
             ->set('editingTitle', 'New title')
             ->call('update')
@@ -98,7 +98,7 @@ class TodosTest extends TestCase
 
         $this->actingAs($user);
 
-        Volt::test('pages.todos')
+        Livewire::test('pages.todos')
             ->call('delete', $todo->id)
             ->assertHasNoErrors();
 

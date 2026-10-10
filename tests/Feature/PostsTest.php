@@ -6,7 +6,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Livewire\Volt\Volt;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class PostsTest extends TestCase
@@ -35,7 +35,7 @@ class PostsTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSeeVolt('pages.posts.index')
+            ->assertSeeLivewire('pages.posts.index')
             ->assertSee('Hello CLIuno')
             ->assertSee($author->username);
     }
@@ -60,7 +60,7 @@ class PostsTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSeeVolt('pages.posts.show')
+            ->assertSeeLivewire('pages.posts.show')
             ->assertSee('Detailed post')
             ->assertSee('Full content here')
             ->assertSee('A fine comment');
@@ -72,7 +72,7 @@ class PostsTest extends TestCase
 
         $this->actingAs($user);
 
-        Volt::test('pages.posts.index')
+        Livewire::test('pages.posts.index')
             ->set('title', 'A new post')
             ->set('content', 'Fresh content')
             ->call('create')
@@ -98,7 +98,7 @@ class PostsTest extends TestCase
 
         $this->actingAs($user);
 
-        Volt::test('pages.posts.show', ['post' => $post])
+        Livewire::test('pages.posts.show', ['post' => $post])
             ->set('newComment', 'Great write-up!')
             ->call('addComment')
             ->assertHasNoErrors();
@@ -122,7 +122,7 @@ class PostsTest extends TestCase
 
         $this->actingAs($user);
 
-        Volt::test('pages.posts.show', ['post' => $post])
+        Livewire::test('pages.posts.show', ['post' => $post])
             ->call('edit')
             ->set('title', 'Updated title')
             ->set('content', 'Updated content')
@@ -131,7 +131,7 @@ class PostsTest extends TestCase
 
         $this->assertSame('Updated title', $post->refresh()->title);
 
-        Volt::test('pages.posts.show', ['post' => $post])
+        Livewire::test('pages.posts.show', ['post' => $post])
             ->call('deletePost')
             ->assertRedirect(route('posts.index', absolute: false));
 

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
 
 Route::view('/', 'welcome');
 
@@ -14,16 +13,16 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 Route::middleware('auth')->group(function () {
-    Volt::route('todos', 'pages.todos')
+    Route::livewire('todos', 'pages.todos')
         ->name('todos');
 
-    Volt::route('posts', 'pages.posts.index')
+    Route::livewire('posts', 'pages.posts.index')
         ->name('posts.index');
 
-    Volt::route('posts/{post}', 'pages.posts.show')
+    Route::livewire('posts/{post}', 'pages.posts.show')
         ->name('posts.show');
 
-    Volt::route('users', 'pages.users')
+    Route::livewire('users', 'pages.users')
         ->name('users.index');
 });
 

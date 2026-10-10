@@ -1,10 +1,10 @@
 # CLIuno TallStack template
 
-The CLIuno demo app on the **TALL stack** — Tailwind, Alpine.js, Laravel, Livewire
-(Volt) — plus the full CLIuno **REST API** under `/api/v1`, so this template is both a
+The CLIuno demo app on the **TALL stack** — Tailwind v4, Alpine.js, Laravel 13,
+Livewire 4 — plus the full CLIuno **REST API** under `/api/v1`, so this template is both a
 server-rendered app *and* a drop-in backend for every CLIuno frontend template.
 
-- **UI (Livewire/Volt)**: register, login (username *or* email), profile, todos,
+- **UI (Livewire 4 single-file components)**: register, login (username *or* email), profile, todos,
   posts + comments, users + follow.
 - **API (Sanctum bearer tokens)**: the shared CLIuno contract — auth (refresh, reset,
   email verification, OTP), users, todos, posts+comments, follows, roles.

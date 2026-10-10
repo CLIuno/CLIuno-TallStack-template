@@ -22,12 +22,12 @@
                             <h1 class="text-2xl font-semibold text-black dark:text-white">CLIuno</h1>
                         </div>
                         @if (Route::has('login'))
-                            <livewire:welcome.navigation />
+                            <x-welcome.navigation />
                         @endif
                     </header>
 
                     <main class="mt-6">
-                        <div class="flex flex-col items-center gap-6 rounded-lg bg-white p-10 text-center shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] dark:bg-zinc-900 dark:ring-zinc-800">
+                        <div class="flex flex-col items-center gap-6 rounded-lg bg-white p-10 text-center shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/5 dark:bg-zinc-900 dark:ring-zinc-800">
                             <h2 class="text-3xl font-semibold text-black dark:text-white">CLIuno TallStack template</h2>
 
                             <p class="max-w-xl text-sm/relaxed">
@@ -37,7 +37,7 @@
                             <div class="flex items-center gap-4">
                                 <a
                                     href="{{ route('login') }}"
-                                    class="rounded-md bg-[#FF2D20] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#FF2D20]/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF2D20] focus-visible:ring-offset-2"
+                                    class="rounded-md bg-[#FF2D20] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#FF2D20]/90 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#FF2D20] focus-visible:ring-offset-2"
                                 >
                                     Log in
                                 </a>
@@ -45,7 +45,7 @@
                                 @if (Route::has('register'))
                                     <a
                                         href="{{ route('register') }}"
-                                        class="rounded-md px-5 py-2.5 text-sm font-semibold text-black ring-1 ring-black/10 transition hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF2D20] dark:text-white dark:ring-white/20 dark:hover:bg-white/5"
+                                        class="rounded-md px-5 py-2.5 text-sm font-semibold text-black ring-1 ring-black/10 transition hover:bg-black/5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#FF2D20] dark:text-white dark:ring-white/20 dark:hover:bg-white/5"
                                     >
                                         Register
                                     </a>
